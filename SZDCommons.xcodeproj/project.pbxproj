@@ -11,6 +11,14 @@
 		5AA47999251BDDD7004415DC /* SZDCommonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA47998251BDDD7004415DC /* SZDCommonsTests.swift */; };
 		5AA4799B251BDDD7004415DC /* SZDCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA4798D251BDDD7004415DC /* SZDCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5AA479D3251BEB20004415DC /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA479D2251BEB20004415DC /* Test.swift */; };
+		5AA479D7251CEE02004415DC /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA479D6251CEE02004415DC /* DateFormatter.swift */; };
+		5AA479D9251CEF09004415DC /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA479D8251CEF09004415DC /* UIAlertController.swift */; };
+		5AA479DB251CEF58004415DC /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA479DA251CEF58004415DC /* UIImage.swift */; };
+		5AA479DD251CF000004415DC /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA479DC251CF000004415DC /* UIView.swift */; };
+		5AA479DF251CF032004415DC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA479DE251CF032004415DC /* UIColor.swift */; };
+		5AA479E1251CF071004415DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA479E0251CF071004415DC /* UIViewController.swift */; };
+		5AA479E3251CF083004415DC /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA479E2251CF083004415DC /* UILabel.swift */; };
+		5AA479E6251CF0BE004415DC /* SZDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA479E5251CF0BE004415DC /* SZDTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +39,14 @@
 		5AA47998251BDDD7004415DC /* SZDCommonsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZDCommonsTests.swift; sourceTree = "<group>"; };
 		5AA4799A251BDDD7004415DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AA479D2251BEB20004415DC /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		5AA479D6251CEE02004415DC /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		5AA479D8251CEF09004415DC /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		5AA479DA251CEF58004415DC /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		5AA479DC251CF000004415DC /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		5AA479DE251CF032004415DC /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		5AA479E0251CF071004415DC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		5AA479E2251CF083004415DC /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		5AA479E5251CF0BE004415DC /* SZDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZDTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +89,9 @@
 		5AA4798C251BDDD7004415DC /* SZDCommons */ = {
 			isa = PBXGroup;
 			children = (
+				5AA479E4251CF0B1004415DC /* ComponentsUI */,
+				5AA479D5251CEDC5004415DC /* ExtensionsFoundation */,
+				5AA479D4251CEDB9004415DC /* ExtensionsUI */,
 				5AA4798D251BDDD7004415DC /* SZDCommons.h */,
 				5AA4798E251BDDD7004415DC /* Info.plist */,
 				5AA479D2251BEB20004415DC /* Test.swift */,
@@ -87,6 +106,35 @@
 				5AA4799A251BDDD7004415DC /* Info.plist */,
 			);
 			path = SZDCommonsTests;
+			sourceTree = "<group>";
+		};
+		5AA479D4251CEDB9004415DC /* ExtensionsUI */ = {
+			isa = PBXGroup;
+			children = (
+				5AA479D8251CEF09004415DC /* UIAlertController.swift */,
+				5AA479DA251CEF58004415DC /* UIImage.swift */,
+				5AA479DC251CF000004415DC /* UIView.swift */,
+				5AA479DE251CF032004415DC /* UIColor.swift */,
+				5AA479E0251CF071004415DC /* UIViewController.swift */,
+				5AA479E2251CF083004415DC /* UILabel.swift */,
+			);
+			path = ExtensionsUI;
+			sourceTree = "<group>";
+		};
+		5AA479D5251CEDC5004415DC /* ExtensionsFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				5AA479D6251CEE02004415DC /* DateFormatter.swift */,
+			);
+			path = ExtensionsFoundation;
+			sourceTree = "<group>";
+		};
+		5AA479E4251CF0B1004415DC /* ComponentsUI */ = {
+			isa = PBXGroup;
+			children = (
+				5AA479E5251CF0BE004415DC /* SZDTextField.swift */,
+			);
+			path = ComponentsUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +247,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AA479E1251CF071004415DC /* UIViewController.swift in Sources */,
+				5AA479DD251CF000004415DC /* UIView.swift in Sources */,
+				5AA479DF251CF032004415DC /* UIColor.swift in Sources */,
+				5AA479D7251CEE02004415DC /* DateFormatter.swift in Sources */,
+				5AA479DB251CEF58004415DC /* UIImage.swift in Sources */,
+				5AA479D9251CEF09004415DC /* UIAlertController.swift in Sources */,
+				5AA479E3251CF083004415DC /* UILabel.swift in Sources */,
+				5AA479E6251CF0BE004415DC /* SZDTextField.swift in Sources */,
 				5AA479D3251BEB20004415DC /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
