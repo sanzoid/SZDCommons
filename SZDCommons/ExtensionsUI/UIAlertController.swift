@@ -44,4 +44,17 @@ public extension UIAlertController {
             }
         }
     }
+    
+    func addTextFields(_ prefills: (placeholder: String?, text: String?)...) {
+        prefills.forEach { prefill in
+            let textFieldHandler = { (textField: UITextField) in
+                textField.placeholder = prefill.placeholder
+                textField.text = prefill.text
+            }
+            
+            self.addTextField { textField in
+                textFieldHandler(textField)
+            }
+        }
+    }
 }
