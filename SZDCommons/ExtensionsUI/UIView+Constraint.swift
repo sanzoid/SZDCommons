@@ -45,6 +45,12 @@ public extension UIView {
         case greaterThanOrEqual
         case lessThanOrEqual
     }
+    /// the axis of a center constraint 
+    enum CenterAxis {
+        case x
+        case y
+        case both
+    }
     
     // MARK: Center
     func constrainToCenter(of view: UIView,

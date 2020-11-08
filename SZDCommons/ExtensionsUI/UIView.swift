@@ -10,13 +10,14 @@ import UIKit
 
 public extension UIView {
     
-    
-    
+    @available(*, deprecated)
     enum VerticalAxis {
         case top
         case bottom
         case both
     }
+    
+    @available(*, deprecated)
     enum VerticalStyle {
         case topToTop
         case topToBottom
@@ -24,22 +25,22 @@ public extension UIView {
         case bottomToBottom
         case topAndBottom
     }
+    
+    @available(*, deprecated)
     enum VerticalPosition {
         case equal
         case greaterThanOrEqual
         case lessThanOrEqual
     }
+    
+    @available(*, deprecated)
     enum HorizontalAxis {
         case leading
         case trailing
         case both
     }
-    enum CenterAxis {
-        case x
-        case y
-        case both
-    }
     
+    @available(*, deprecated)
     enum ConstraintDimension {
         case center
         case horizontal
@@ -62,6 +63,7 @@ public extension UIView {
         }
     }
     
+    @available(*, deprecated)
     func constrainTo(view: UIView, on dimension: ConstraintDimension, constant: CGFloat = 0.0) {
         if dimension == .center || dimension == .all {
             self.constrainToCenter(of: view)
@@ -74,6 +76,7 @@ public extension UIView {
         }
     }
     
+    @available(*, deprecated)
     func constrainToCenter(of view: UIView, axis: CenterAxis = .both, constant: CGFloat = 0.0) {
         if axis == .x || axis == .both {
             self.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: constant).isActive = true
@@ -83,6 +86,7 @@ public extension UIView {
         }
     }
     
+    @available(*, deprecated)
     func constrainToHorizontal(of view: UIView, axis: HorizontalAxis = .both, constant: CGFloat = 0.0) {
         if axis == .leading || axis == .both {
             self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constant).isActive = true
@@ -92,6 +96,7 @@ public extension UIView {
         }
     }
     
+    @available(*, deprecated)
     func constrainToVertical(of view: UIView, axis: VerticalAxis = .both, constant: CGFloat = 0.0) {
         if axis == .top || axis == .both {
             self.topAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
@@ -101,21 +106,18 @@ public extension UIView {
         }
     }
     
-    
-    
-    
-    
-    
-    
+    @available(*, deprecated)
     func constrainToWidthAndHeight(constant: CGFloat) {
         self.constrainToWidth(constant: constant)
         self.heightAnchor.constraint(equalTo: self.widthAnchor).isActive = true
     }
     
+    @available(*, deprecated)
     func constrainToWidth(constant: CGFloat) {
         self.widthAnchor.constraint(equalToConstant: constant).isActive = true
     }
     
+    @available(*, deprecated)
     func constrainToHeight(constant: CGFloat) {
         self.heightAnchor.constraint(equalToConstant: constant).isActive = true
     }
