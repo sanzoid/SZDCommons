@@ -107,28 +107,30 @@ public extension UIView {
     func constrainToEdge(of view: UIView,
                          placement: EdgePlacement,
                          relativity: ConstraintRelativity = .equal,
+                         withinSafeArea: Bool = true,
                          constant: CGFloat = 0.0,
                          priority: UILayoutPriority = .defaultHigh) {
         if placement == .all {
-            self.constrainToEdge(of: view, placement: .topAndBottom, relativity: relativity, constant: constant, priority: priority)
-            self.constrainToEdge(of: view, placement: .leadingAndTrailing, relativity: relativity, constant: constant, priority: priority)
+            self.constrainToEdge(of: view, placement: .topAndBottom, relativity: relativity, withinSafeArea: withinSafeArea, constant: constant, priority: priority)
+            self.constrainToEdge(of: view, placement: .leadingAndTrailing, relativity: relativity, withinSafeArea: withinSafeArea, constant: constant, priority: priority)
             return
         }
         
         switch placement {
         case .topToTop, .topToBottom, .bottomToTop, .bottomToBottom, .topAndBottom:
-            self.constrainToEdgeVertical(of: view, placement: placement, relativity: relativity, constant: constant, priority: priority)
+            self.constrainToEdgeVertical(of: view, placement: placement, relativity: relativity, withinSafeArea: withinSafeArea, constant: constant, priority: priority)
             
         case .leadingToLeading, .leadingToTrailing, .trailingToLeading, .trailingToTrailing, .leadingAndTrailing:
-            self.constrainToEdgeHorizontal(of: view, placement: placement, relativity: relativity, constant: constant, priority: priority)
+            self.constrainToEdgeHorizontal(of: view, placement: placement, relativity: relativity, withinSafeArea: withinSafeArea, constant: constant, priority: priority)
         default:
             fatalError("constrainToEdge reached default")
         }
     }
-    
+        
     private func constrainToEdgeVertical(of view: UIView,
                          placement: EdgePlacement,
                          relativity: ConstraintRelativity = .equal,
+                         withinSafeArea: Bool = true,
                          constant: CGFloat = 0.0,
                          priority: UILayoutPriority = .defaultHigh) {
         // base anchor
@@ -143,15 +145,27 @@ public extension UIView {
         
         // apply constraint
         if let topAnchor = topAnchor {
-            let constraintAnchor = placement == .topToBottom ? view.bottomAnchor : view.topAnchor
+            var constraintAnchor: NSLayoutYAxisAnchor
+            if placement == .topToBottom {
+                constraintAnchor = withinSafeArea ? view.safeAreaLayoutGuide.bottomAnchor : view.bottomAnchor
+            } else {
+                constraintAnchor = withinSafeArea ? view.safeAreaLayoutGuide.topAnchor : view.topAnchor
+            }
             let constant = constant
+            
             let constraint = self.applyAnchorConstraint(baseAnchor: topAnchor, constraintAnchor: constraintAnchor, relativity: relativity, constant: constant)
             constraint.isActive = true
             constraint.priority = priority
         }
         if let bottomAnchor = bottomAnchor {
-            let constraintAnchor = placement == .bottomToTop ? view.topAnchor : view.bottomAnchor
+            var constraintAnchor: NSLayoutYAxisAnchor
+            if placement == .bottomToTop {
+                constraintAnchor = withinSafeArea ? view.safeAreaLayoutGuide.topAnchor : view.topAnchor
+            } else {
+                constraintAnchor = withinSafeArea ? view.safeAreaLayoutGuide.bottomAnchor : view.bottomAnchor
+            }
             let constant = -constant
+            
             let constraint = self.applyAnchorConstraint(baseAnchor: bottomAnchor, constraintAnchor: constraintAnchor, relativity: relativity, constant: constant)
             constraint.isActive = true
             constraint.priority = priority
@@ -161,6 +175,7 @@ public extension UIView {
     private func constrainToEdgeHorizontal(of view: UIView,
                                    placement: EdgePlacement,
                                    relativity: ConstraintRelativity = .equal,
+                                   withinSafeArea: Bool = true,
                                    constant: CGFloat = 0.0,
                                    priority: UILayoutPriority = .defaultHigh) {
         // base anchor
@@ -175,15 +190,27 @@ public extension UIView {
         
         // apply constraint
         if let leadingAnchor = leadingAnchor {
-            let constraintAnchor = placement == .leadingToTrailing ? view.trailingAnchor : view.leadingAnchor
+            var constraintAnchor: NSLayoutXAxisAnchor
+            if placement == .leadingToTrailing {
+                constraintAnchor = withinSafeArea ? view.safeAreaLayoutGuide.trailingAnchor : view.trailingAnchor
+            } else {
+                constraintAnchor = withinSafeArea ? view.safeAreaLayoutGuide.leadingAnchor : view.leadingAnchor
+            }
             let constant = constant
+            
             let constraint = self.applyAnchorConstraint(baseAnchor: leadingAnchor, constraintAnchor: constraintAnchor, relativity: relativity, constant: constant)
             constraint.isActive = true
             constraint.priority = priority
         }
         if let trailingAnchor = trailingAnchor {
-            let constraintAnchor = placement == .trailingToLeading ? view.leadingAnchor : view.trailingAnchor
+            var constraintAnchor: NSLayoutXAxisAnchor
+            if placement == .trailingToLeading {
+                constraintAnchor = withinSafeArea ? view.safeAreaLayoutGuide.leadingAnchor : view.leadingAnchor
+            } else {
+                constraintAnchor = withinSafeArea ? view.safeAreaLayoutGuide.trailingAnchor : view.trailingAnchor
+            }
             let constant = -constant
+            
             let constraint = self.applyAnchorConstraint(baseAnchor: trailingAnchor, constraintAnchor: constraintAnchor, relativity: relativity, constant: constant)
             constraint.isActive = true
             constraint.priority = priority
