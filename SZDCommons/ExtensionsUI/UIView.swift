@@ -10,24 +10,8 @@ import UIKit
 
 public extension UIView {
     
-    enum EdgePlacement {
-        case topToTop
-        case topToBottom
-        case bottomToTop
-        case bottomToBottom
-        case topAndBottom
-        
-        case leadingToLeading
-        case leadingToTrailing
-        case trailingToLeading
-        case trailingToTrailing
-        case leadingAndTrailing
-    }
-    enum EdgeRelativity {
-        case equal
-        case greaterThanOrEqual
-        case lessThanOrEqual
-    }
+    
+    
     enum VerticalAxis {
         case top
         case bottom
@@ -117,111 +101,11 @@ public extension UIView {
         }
     }
     
-    func constrainToEdge(of view: UIView,
-                         placement: EdgePlacement,
-                         relativity: EdgeRelativity = .equal,
-                         constant: CGFloat = 0.0,
-                         priority: UILayoutPriority = .defaultHigh) {
-        switch placement {
-        case .topToTop, .topToBottom, .bottomToTop, .bottomToBottom, .topAndBottom:
-            self.constrainToEdgeVertical(of: view, placement: placement, relativity: relativity, constant: constant, priority: priority)
-            
-        case .leadingToLeading, .leadingToTrailing, .trailingToLeading, .trailingToTrailing, .leadingAndTrailing:
-            self.constrainToEdgeHorizontal(of: view, placement: placement, relativity: relativity, constant: constant, priority: priority)
-        }
-    }
     
-    private func constrainToEdgeVertical(of view: UIView,
-                         placement: EdgePlacement,
-                         relativity: EdgeRelativity = .equal,
-                         constant: CGFloat = 0.0,
-                         priority: UILayoutPriority = .defaultHigh) {
-        // base anchor
-        var topAnchor: NSLayoutYAxisAnchor?
-        if placement == .topToTop || placement == .topToBottom || placement == .topAndBottom {
-            topAnchor = self.topAnchor
-        }
-        var bottomAnchor: NSLayoutYAxisAnchor?
-        if placement == .bottomToTop || placement == .bottomToBottom || placement == .topAndBottom {
-            bottomAnchor = self.bottomAnchor
-        }
-        
-        // constraint relativity 
-        let applyConstraint = { (baseAnchor: NSLayoutYAxisAnchor, constraintAnchor: NSLayoutYAxisAnchor, constant: CGFloat) -> NSLayoutConstraint in
-            var constraint: NSLayoutConstraint
-            switch relativity {
-            case .equal:
-                constraint = baseAnchor.constraint(equalTo: constraintAnchor, constant: constant)
-            case .greaterThanOrEqual:
-                constraint = baseAnchor.constraint(greaterThanOrEqualTo: constraintAnchor, constant: constant)
-            case .lessThanOrEqual:
-                constraint = baseAnchor.constraint(lessThanOrEqualTo: constraintAnchor, constant: constant)
-            }
-            return constraint
-        }
-        
-        // apply constraint
-        if let topAnchor = topAnchor {
-            let anchor = placement == .topToBottom ? view.bottomAnchor : view.topAnchor
-            let constant = constant
-            let constraint = applyConstraint(topAnchor, anchor, constant)
-            constraint.isActive = true
-            constraint.priority = priority
-        }
-        if let bottomAnchor = bottomAnchor {
-            let anchor = placement == .bottomToTop ? view.topAnchor : view.bottomAnchor
-            let constant = -constant
-            let constraint = applyConstraint(bottomAnchor, anchor, constant)
-            constraint.isActive = true
-            constraint.priority = priority
-        }
-    }
     
-    private func constrainToEdgeHorizontal(of view: UIView,
-                                   placement: EdgePlacement,
-                                   relativity: EdgeRelativity = .equal,
-                                   constant: CGFloat = 0.0,
-                                   priority: UILayoutPriority = .defaultHigh) {
-        // base anchor
-        var leadingAnchor: NSLayoutXAxisAnchor?
-        if placement == .leadingToLeading || placement == .leadingToTrailing || placement == .leadingAndTrailing {
-            leadingAnchor = self.leadingAnchor
-        }
-        var trailingAnchor: NSLayoutXAxisAnchor?
-        if placement == .trailingToLeading || placement == .trailingToTrailing || placement == .leadingAndTrailing {
-            trailingAnchor = self.trailingAnchor
-        }
-        
-        // constraint relativity
-        let applyConstraint = { (baseAnchor: NSLayoutXAxisAnchor, constraintAnchor: NSLayoutXAxisAnchor, constant: CGFloat) -> NSLayoutConstraint in
-            var constraint: NSLayoutConstraint
-            switch relativity {
-            case .equal:
-                constraint = baseAnchor.constraint(equalTo: constraintAnchor, constant: constant)
-            case .greaterThanOrEqual:
-                constraint = baseAnchor.constraint(greaterThanOrEqualTo: constraintAnchor, constant: constant)
-            case .lessThanOrEqual:
-                constraint = baseAnchor.constraint(lessThanOrEqualTo: constraintAnchor, constant: constant)
-            }
-            return constraint
-        }
-        
-        // apply constraint
-        if let leadingAnchor = leadingAnchor {
-            let anchor = placement == .leadingToTrailing ? view.trailingAnchor : view.leadingAnchor
-            let constant = constant
-            let constraint = applyConstraint(leadingAnchor, anchor, constant)
-            constraint.isActive = true
-            constraint.priority = priority
-        }
-        if let trailingAnchor = trailingAnchor {
-            let anchor = placement == .trailingToLeading ? view.leadingAnchor : view.trailingAnchor
-            let constant = -constant
-            let constraint = applyConstraint(trailingAnchor, anchor, constant)
-            constraint.isActive = true
-            constraint.priority = priority
-        }
-    }
+    
+    
+    
     
     func constrainToWidthAndHeight(constant: CGFloat) {
         self.constrainToWidth(constant: constant)
