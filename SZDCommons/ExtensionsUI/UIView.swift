@@ -77,16 +77,6 @@ public extension UIView {
     }
     
     @available(*, deprecated)
-    func constrainToCenter(of view: UIView, axis: CenterAxis = .both, constant: CGFloat = 0.0) {
-        if axis == .x || axis == .both {
-            self.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: constant).isActive = true
-        }
-        if axis == .y || axis == .both {
-            self.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant).isActive = true
-        }
-    }
-    
-    @available(*, deprecated)
     func constrainToHorizontal(of view: UIView, axis: HorizontalAxis = .both, constant: CGFloat = 0.0) {
         if axis == .leading || axis == .both {
             self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constant).isActive = true
